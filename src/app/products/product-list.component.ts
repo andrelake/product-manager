@@ -1,38 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './product';
+import { ProductService } from './product.service';
 
 @Component({
     selector: 'product-list',
-    templateUrl: './product-list.component.html'
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.css']
 })
 
 export class ProductListComponent implements OnInit{
 
-    products: Product[] = []
+    _products: Product[] = []
+    filteredProducts: Product[] = []
+    _search: string
+
+
+    constructor(private service: ProductService) {}
+    
 
     ngOnInit(): void {
-        this.products = [
-            {
-                id: 1,
-                name: 'Lighter',
-                brand: 'Mr Smoke',
-                price: 50.00,
-                warranty: 90,
-                imageUrl: '/assets/img/isqueiro.jpg',
-                code: 'LT_MRSMOKE',
-                rating: 4
-            },
-            {
-                id: 2,
-                name: 'Eletric Cigar',
-                brand: 'Marlbroto',
-                price: 230.00,
-                warranty: 120,
-                imageUrl: '/assets/img/cigarro.jpg',
-                code: 'EC_MARLBROTO',
-                rating: 3.5
-            }
-        ]
+        this._products = this.service.loadAll()
+        this.filteredProducts = this._products
     }
 
+    get filter() {
+        return this._search
+    }
+
+    set filter(prop: string) {
+        this._search = prop
+        this.filteredProducts = this._products
+                                .filter((product: Product) => product.name.toLocaleLowerCase().indexOf(this._search.toLocaleLowerCase())>-1)
+    }
 }
