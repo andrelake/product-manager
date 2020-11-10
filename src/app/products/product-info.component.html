@@ -1,0 +1,99 @@
+<h2>Product Info</h2><br>
+
+<form #productForm="ngForm">
+
+    <div class="form-group row" id="search-box">
+        <label for=" " class="col-sm-2 col-form-label" id="labelSearch">Code:</label>
+        <div class="col-sm-5">
+            <input 
+            required
+            class="form-control" 
+            [(ngModel)]="product.code" 
+            #productCode="ngModel" 
+            [ngClass]="{'is-invalid': productCode.invalid}"
+            name="code">
+            <div class="invalid-feedback">
+                <span>Product code is required</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row" id="search-box">
+        <label for=" " class="col-sm-2 col-form-label" id="labelSearch">Name:</label>
+        <div class="col-sm-5">
+            <input 
+            required
+            class="form-control" 
+            [(ngModel)]="product.name" 
+            #productName="ngModel" 
+            [ngClass]="{'is-invalid': productName.invalid}"
+            name="name">
+            <div class="invalid-feedback">
+                <span>Product name is required</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row" id="search-box">
+        <label for=" " class="col-sm-2 col-form-label" id="labelSearch">Brand:</label>
+        <div class="col-sm-5">
+            <input 
+            required
+            class="form-control" 
+            [(ngModel)]="product.brand" 
+            #productBrand="ngModel" 
+            [ngClass]="{'is-invalid': productBrand.invalid}"
+            name="brand">
+            <div class="invalid-feedback">
+                <span>Brand is required</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row" id="search-box">
+        <label for=" " class="col-sm-2 col-form-label" id="labelSearch">Price:</label>
+        <div class="col-sm-5">
+            <input 
+            required
+            class="form-control" 
+            type="number"
+            [(ngModel)]="product.price" 
+            #productPrice="ngModel" 
+            [ngClass]="{'is-invalid': productPrice.invalid}"
+            name="price">
+            <div class="invalid-feedback">
+                <span>Price is required</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row" id="search-box">
+        <label for=" " class="col-sm-2 col-form-label" id="labelSearch">Warranty:</label>
+        <div class="col-sm-5">
+            <input 
+            required
+            class="form-control" 
+            [(ngModel)]="product.warranty" 
+            #productWarranty="ngModel" 
+            [ngClass]="{'is-invalid': productWarranty.invalid}"
+            name="warranty">
+            <div class="invalid-feedback">
+                <span>Warranty is required</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row" id="search-box">
+        <label for=" " class="col-sm-2 col-form-label" id="labelSearch">Rating:</label>
+        <div class="col-sm-5">
+            <input 
+            required
+            class="form-control" 
+            [(ngModel)]="product.rating" 
+            #productRating="ngModel" 
+            [ngClass]="{'is-invalid': productRating.invalid}"
+            name="rating">
+            <div class="invalid-feedback">
+                <span>Rating is required</span>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary mr-2" [disabled]="productForm.invalid" (click)="save()">Save</button>
+    <button class="btn btn-secondary" [routerLink]="['/products']">Back</button>
+</form>

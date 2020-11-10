@@ -9,6 +9,7 @@ import { ProductListComponent } from './products/product-list.component';
 import { StarComponent } from './stars/star.component';
 import { NavBarComponent } from './navbar/nav-bar.component';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
+import { ProductInfoComponent } from './products/product-info.component';
 
 @NgModule({
   declarations: [
@@ -16,17 +17,21 @@ import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
     ProductListComponent,
     StarComponent,
     NavBarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProductInfoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot([
       {
-        path: '', redirectTo: 'products', pathMatch: 'full'
+        path: 'products/info/:id', component: ProductInfoComponent
       },
       {
         path: 'products', component: ProductListComponent
+      },
+      {
+        path: '', redirectTo: 'products', pathMatch: 'full'
       },
       {
         path: '**', component: PageNotFoundComponent

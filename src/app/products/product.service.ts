@@ -9,6 +9,17 @@ export class ProductService {
     loadAll(): Product[] {
         return PRODUCTS
     }
+
+    findById(id: number): Product {
+        return PRODUCTS.find((product: Product) => product.id === id)
+    }
+
+    save(product: Product): void {
+        if(product.id) {
+            const index = PRODUCTS.findIndex((productx: Product) => productx.id === product.id)
+            PRODUCTS[index] = product
+        }
+    }
 }
 
 var PRODUCTS: Product[] = [
