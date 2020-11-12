@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Product } from './product';
 
 @Injectable({
@@ -6,19 +8,30 @@ import { Product } from './product';
 })
 export class ProductService {
 
-    loadAll(): Product[] {
-        return PRODUCTS
+    private productsUrl: string = 'http://localhost:3100/api/products'
+
+    constructor(
+        private httpClient: HttpClient
+    ) { }
+
+    loadAll(): Observable<Product[]> {
+        return this.httpClient.get<Product[]>(this.productsUrl)
     }
 
-    findById(id: number): Product {
-        return PRODUCTS.find((product: Product) => product.id === id)
+    findById(id: number): Observable<Product> {
+        return this.httpClient.get<Product>(`${this.productsUrl}/${id}`)
     }
 
-    save(product: Product): void {
+    save(product: Product): Observable<Product> {
         if(product.id) {
-            const index = PRODUCTS.findIndex((productx: Product) => productx.id === product.id)
-            PRODUCTS[index] = product
+            return this.httpClient.put<Product>(`${this.productsUrl}/${product.id}`, product)
+        } else {
+            return this.httpClient.post<Product>(`${this.productsUrl}`, product)
         }
+    }
+
+    delete(product: Product): Observable<any> {
+        return this.httpClient.delete<any>(`${this.productsUrl}/${product.id}`)
     }
 }
 

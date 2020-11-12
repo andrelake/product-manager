@@ -1,0 +1,27 @@
+#btn-delete {
+    margin-left: 440px;
+}
+
+@media screen and (max-width: 1200px) {
+    #btn-delete {
+        margin-left: 340px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #btn-delete {
+        margin-left: 195px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #btn-delete {
+        margin-left: 90px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    #btn-delete {
+        margin-left: 90px;
+    }
+}

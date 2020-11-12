@@ -18,8 +18,17 @@ export class ProductListComponent implements OnInit{
     
 
     ngOnInit(): void {
-        this._products = this.service.loadAll()
-        this.filteredProducts = this._products
+        this.loadAll()
+    }
+
+    loadAll(): void {
+        this.service.loadAll().subscribe({
+            next: products => {
+                this._products = products
+                this.filteredProducts = this._products
+            },
+            error: err => console.log('Error loading list of products', err)
+        })
     }
 
     get filter() {
