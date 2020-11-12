@@ -6,32 +6,22 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
-import { ProductListComponent } from './products/product-list.component';
-import { StarComponent } from './stars/star.component';
 import { NavBarComponent } from './navbar/nav-bar.component';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
-import { ProductInfoComponent } from './products/product-info.component';
+import { ProductModule } from './products/product.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
-    StarComponent,
     NavBarComponent,
     PageNotFoundComponent,
-    ProductInfoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ProductModule,
     RouterModule.forRoot([
-      {
-        path: 'products/info/:id', component: ProductInfoComponent
-      },
-      {
-        path: 'products', component: ProductListComponent
-      },
       {
         path: '', redirectTo: 'products', pathMatch: 'full'
       },
